@@ -1,0 +1,23 @@
+{
+  "token": "PASTE_A_TOKEN_FROM_gen-token_HERE",
+  "bind": "127.0.0.1",
+  "port": 8088,
+  "cameras": [
+    {
+      "id": "front",
+      "name": "Front Door",
+      "host": "192.168.1.64",
+      "user": "admin",
+      "password": "env:CAM_FRONT_PW",
+      "channel": 101
+    },
+    {
+      "id": "yard",
+      "name": "Back Yard",
+      "host": "192.168.1.65",
+      "user": "admin",
+      "password": "env:CAM_YARD_PW",
+      "channel": 101
+    }
+  ]
+}

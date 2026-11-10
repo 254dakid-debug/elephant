@@ -65,3 +65,15 @@ class IsapiClient:
             return strip_ns(ET.fromstring(body))
         except ET.ParseError:
             return None
+
+    def get_bytes(self, path: str) -> tuple[bytes, str]:
+        """GET a raw body (e.g. a JPEG snapshot). Returns (data, content_type)."""
+        try:
+            with self._opener.open(self.base + path, timeout=self.timeout) as resp:
+                return resp.read(), resp.headers.get("Content-Type", "")
+        except urllib.error.HTTPError as e:
+            if e.code == 401:
+                raise AuthError("login rejected (wrong password or account locked)") from e
+            raise DeviceError(f"{path}: HTTP {e.code}") from e
+        except (urllib.error.URLError, OSError) as e:
+            raise DeviceError(f"cannot reach {self.base}: {e}") from e
