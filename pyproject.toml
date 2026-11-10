@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hikaudit"
+version = "0.1.0"
+description = "Read-only security self-audit for Hikvision / Hik-Connect devices you own"
+requires-python = ">=3.9"
+readme = "README.md"
+
+[project.scripts]
+hikaudit = "hikaudit.cli:main"
+
+[tool.setuptools]
+packages = ["hikaudit"]
